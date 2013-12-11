@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en" ng-app="goji-admin">
+<head>
+    <meta charset="utf-8">
+    <title>Goji admin</title>
+    <link rel="stylesheet" href="components/bootstrap-css/css/bootstrap.css"/>
+    <link rel="stylesheet" href="css/main.css"/>
+    <script type="text/javascript" src="components/angular/angular.js"></script>
+    <script type="text/javascript" src="components/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="components/bootstrap-css/js/bootstrap.js"></script>
+    <script type="text/javascript" src="components/underscore/underscore-min.js"></script>
+    <script type="text/javascript" src="components/momentjs/min/moment.min.js"></script>
+    <script type="text/javascript" src="components/jspdf/dist/jspdf.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="js/order/orderController.js"></script>
+    <script type="text/javascript" src="js/order/showOrderedProductsFilter.js"></script>
+    <script type="text/javascript" src="js/order/pdfFactory.js"></script>
+    <script type="text/javascript" src="config.js"></script>
+</head>
+<body ng-controller="OrderCtrl as order">
+<div class="container">
+        <table class="well well-sm order table table-bordered table-condensed table-striped">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Bag size</th>
+                <th>Total weight (kg)</th>
+                <th>Suggested (bags)</th>
+                <th>Actual</th>
+            </tr>
+            </thead>
+
+            <tr ng-repeat="product in order.data">
+                <td>{{product.name}}</td>
+                <td>{{product.bagSize}}</td>
+                <td>{{product.totalWeight()}}</td>
+                <td>{{product.suggestedOrderAmount}}</td>
+                <td><input type="text" class="form-control" ng-model="product.actualOrderAmount" value="{{product.actualOrderAmount}}"></td>
+            </tr>
+            <tfoot>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>Total weight: {{order.totalWeight(order.data)}}</td>
+                    <td><input type="text" class="form-control" ng-model="product.orderSeqNumber" value="{{product.actualOrderAmount}}" ng-form='seqNumber' required></td>
+                    <td><button type="button" class="btn btn-primary btn-sm" ng-disabled="!seqNumber.$valid" ng-click="order.generatePdf(orderedProducts, product.orderSeqNumber)">Generate Pdf</button></td>
+                </tr>
+            </tfoot>
+        </table>
+        <div id="emailText">
+            <p>Hi,<br><br>
+
+                We'd like to make a new order.
+                <br><br>
+                Special requests for the order like before:<br>
+                * All products must be pre-labeled and ready to send to our customers
+                without additional handling.<br>
+                * Could you please print the attached document and include in
+                the order? Thanks.<br><br>
+                Products:
+            </p>
+            <ul>
+                <li ng-repeat="product in (orderedProducts = (order.data | showOrderedProductsFilter))">{{product.totalWeight()}}kg ({{product.actualOrderAmount}}x{{product.bagSize}}g) {{product.name}}</li>
+            </ul>
+            <p>
+                ---<br>
+                Total ~ {{order.totalWeight(order.data)}}kg<br><br>
+
+                Shipped to:<br>
+                E-3PL Logistics<br>
+                (Gojibär)<br>
+                Strandbadsvägen 13A<br>
+                252 29 Helsingborg<br><br>
+
+                With labels without the www.gojiking.co.uk webaddress. We can continue to pay by bank transfer.<br>
+
+                Thank you!<br><br>
+
+                Best regards,<br><br>
+
+                Jonas<br>
+
+            </p>
+        </div>
+</div>
+</body>
+</html>
