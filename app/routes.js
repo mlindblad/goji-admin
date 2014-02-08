@@ -1,19 +1,21 @@
-var Product = require('./models/product');
+var Product = require('./models/product'),
+    ftpConnection = require('./ftpConnection');
+
 
 module.exports = function(app) {
 
 	app.get('/products', function(req, res) {
-        Product.find(function(err, products) {
+        //Download stock status from e3pl, and update products
+        ftpConnection.getStockStatus(function() {
+            Product.find(function(err, products) {
+                // if there is an error retrieving, send the error. nothing after res.send(err) will execute
+                if (err)
+                    res.send(err)
 
-            // if there is an error retrieving, send the error. nothing after res.send(err) will execute
-            if (err)
-                res.send(err)
-
-            res.json(products); // return all todos in JSON format
+                res.json(products); // return all todos in JSON format
+            });
         });
     });
-
-
 
 	// api ---------------------------------------------------------------------
 	// get all todos

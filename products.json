@@ -1,16 +1,16 @@
-{ name: "Organic Goji Berries", number: 100001, sweName: "Ekologiska gojibär (250g)", suggestedOrderAmount: 100, bagSize: 250, actualOrderAmount: 0}
-{ name: "Raw Organic Chia Seeds", number: 100012, sweName: "Ekologiska Chiafrön 250g", suggestedOrderAmount: 100, bagSize: 250, actualOrderAmount: 0}
-{ name: "Organic Bee Pollen", number: 100002, sweName: "Ekologiskt Bipollen (250g)", suggestedOrderAmount: 100, bagSize: 250, actualOrderAmount: 0}
-{ name: "Chaga Mushroom", number: 100028, sweName: "Chagapulver 125g", suggestedOrderAmount: 100, bagSize: 125, actualOrderAmount: 0}
-{ name: "Organic Wheatgrass Powder", number: 100003, sweName: "Ekologiskt Vetegräspulver \n(250g)", suggestedOrderAmount: 80, bagSize: 250, actualOrderAmount: 0}
-{ name: "Raw Organic Maca Powder", number: 100004, sweName: "Ekologisk Maca (250g)", suggestedOrderAmount: 64, bagSize: 250, actualOrderAmount: 0}
-{ name: "Raw Organic Cacao Nibs", number: 100005, sweName: "Ekologiska Krossade \nKakaobönor (250g)", suggestedOrderAmount: 40, bagSize: 250, actualOrderAmount: 0}
-{ name: "Organic Barley Grass", number: 100006, sweName: "Ekologiskt Korngräs (250g)", suggestedOrderAmount: 64, bagSize: 250, actualOrderAmount: 0 }
-{ name: "Raw Organic Mulberries", number: 100007, sweName: "Ekologiska Mullbär (250g)", suggestedOrderAmount: 32, bagSize: 250, actualOrderAmount: 0 }
-{ name: "Raw Organic Cacao Powder", number: 100008, sweName: "Ekologiskt Kakaopulver \n(250g)", suggestedOrderAmount: 32, bagSize: 250, actualOrderAmount: 0}
-{ name: "Raw Organic Freeze Dried \nAcai Powder", number: 100009, sweName: "Ekologisk Acai (125g)", suggestedOrderAmount: 54, bagSize: 125, actualOrderAmount: 0 }
-{ name: "Organic Spirulina Powder", number: 100010, sweName: "Ekologisk Spirulina (250g)", suggestedOrderAmount: 64, bagSize: 250, actualOrderAmount: 0 }
-{ name: "Premium Ginko Biloba Leaf \nPowder", number: 100042, sweName: "Ginko Bilobapulver 125g", suggestedOrderAmount: 32, bagSize: 125, actualOrderAmount: 0}
+{name: "Organic Goji Berries", number: 100001, sweName: "Ekologiska gojibär (250g)", suggestedOrderAmount: 100, bagSize: 250}
+{name: "Raw Organic Chia Seeds", number: 100012, sweName: "Ekologiska Chiafrön 250g", suggestedOrderAmount: 100, bagSize: 250}
+{name: "Organic Bee Pollen", number: 100002, sweName: "Ekologiskt Bipollen (250g)", suggestedOrderAmount: 100, bagSize: 250}
+{name: "Chaga Mushroom", number: 100028, sweName: "Chagapulver 125g", suggestedOrderAmount: 100, bagSize: 125}
+{name: "Organic Wheatgrass Powder", number: 100003, sweName: "Ekologiskt Vetegräspulver \n(250g)", suggestedOrderAmount: 80, bagSize: 250}
+{name: "Raw Organic Maca Powder", number: 100004, sweName: "Ekologisk Maca (250g)", suggestedOrderAmount: 64, bagSize: 250}
+{name: "Raw Organic Cacao Nibs", number: 100005, sweName: "Ekologiska Krossade \nKakaobönor (250g)", suggestedOrderAmount: 40, bagSize: 250}
+{name: "Organic Barley Grass", number: 100006, sweName: "Ekologiskt Korngräs (250g)", suggestedOrderAmount: 64, bagSize: 250 }
+{name: "Raw Organic Mulberries", number: 100007, sweName: "Ekologiska Mullbär (250g)", suggestedOrderAmount: 32, bagSize: 250 }
+{name: "Raw Organic Cacao Powder", number: 100008, sweName: "Ekologiskt Kakaopulver \n(250g)", suggestedOrderAmount: 32, bagSize: 250}
+{name: "Raw Organic Freeze Dried \nAcai Powder", number: 100009, sweName: "Ekologisk Acai (125g)", suggestedOrderAmount: 54, bagSize: 125 }
+{name: "Organic Spirulina Powder", number: 100010, sweName: "Ekologisk Spirulina (250g)", suggestedOrderAmount: 64, bagSize: 250 }
+{name: "Premium Ginko Biloba Leaf \nPowder", number: 100042, sweName: "Ginko Bilobapulver 125g", suggestedOrderAmount: 32, bagSize: 125}
 {name: "Raw Organic Coconut Oil",number: 100034,sweName: "Ekologisk Kokosolja",suggestedOrderAmount: 16,bagSize: 400,actualOrderAmount: 0}
 {name: "Scisandra Berry Powder",number: 100043,sweName: "Schisandrapulver 125g",suggestedOrderAmount: 16,bagSize: 125,actualOrderAmount: 0}
 {name: "Raw Organic Freeze Dried \nAcai Powder",number: 100009,sweName: "Ekologisk Acai (125g)",suggestedOrderAmount: 54,bagSize: 125,actualOrderAmount: 0}
@@ -27,7 +27,7 @@
 {name: "Raw Organic Brazil \nNuts",number: 100022,sweName: "Ekologiska Paranötter \n250g",suggestedOrderAmount: 20,bagSize: 250,actualOrderAmount: 0}
 {name: "Whole Macadamia \nNuts",number: 100023,sweName: "Macademianötter 250g",suggestedOrderAmount: 16,bagSize: 250,actualOrderAmount: 0}
 {name: "Premium Rosehip \nPowder",number: 100025,sweName: "Nyponpulver 250g",suggestedOrderAmount: 40,bagSize: 250,actualOrderAmount: 0}
-{name: "Raw Organic Panax /nGinseng Powder",number: 100026,sweName: "Ekologiskt Ginseng \n125g",suggestedOrderAmount: 16,bagSize: 125,actualOrderAmount: 0}
+{name: "Raw Organic Panax \nGinseng Powder",number: 100026,sweName: "Ekologiskt Ginseng \n125g",suggestedOrderAmount: 16,bagSize: 125,actualOrderAmount: 0}
 {name: "Rhodiola Rosea \nPowder",number: 100041,sweName: "Rosenrot 125g",suggestedOrderAmount: 24,bagSize: 125,actualOrderAmount: 0}
 {name: "Premium Shiitake \nPowder",number: 100029,sweName: "Shiitakepulver 250g",suggestedOrderAmount: 16,bagSize: 250,actualOrderAmount: 0}
 {name: "Premium Reishi \nMushroom Powder",number: 100030,sweName: "Reishipulver 250g",suggestedOrderAmount: 20,bagSize: 250,actualOrderAmount: 0}

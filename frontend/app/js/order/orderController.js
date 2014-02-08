@@ -5,6 +5,7 @@ function generateProducts(data) {
         product.totalWeight = function () {
             return (product.bagSize * product.actualOrderAmount) / 1000;
         }
+        product.actualOrderAmount = 0;
     });
     return data;
 }

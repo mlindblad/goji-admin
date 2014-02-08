@@ -6,5 +6,6 @@ module.exports = mongoose.model('Product', {
     sweName: String,
     suggestedOrderAmount: Number,
     bagSize: Number,
-    actualOrderAmount: Number
+    actualOrderAmount: Number,
+    amountInStock: Number
 });
