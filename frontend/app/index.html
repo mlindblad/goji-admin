@@ -46,7 +46,7 @@
                     <td></td>
                     <td>Total weight: {{order.totalWeight(order.data)}}</td>
                     <td><input type="text" class="form-control" ng-model="product.orderSeqNumber" value="{{product.actualOrderAmount}}" ng-form='seqNumber' required></td>
-                    <td><button type="button" class="btn btn-primary btn-sm" ng-disabled="!seqNumber.$valid" ng-click="order.generatePdf(orderedProducts, product.orderSeqNumber)">Generate Pdf</button></td>
+                    <td><button type="button" class="btn btn-primary btn-sm" ng-disabled="!seqNumber.$valid" ng-click="order.createOrderAndGeneratePdf(orderedProducts, product.orderSeqNumber)">Generate Pdf</button></td>
                 </tr>
             </tfoot>
         </table>

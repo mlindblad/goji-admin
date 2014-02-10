@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en" ng-app="goji-admin">
+<head>
+    <meta charset="utf-8">
+    <title>Goji admin</title>
+    <link rel="stylesheet" href="components/bootstrap-css/css/bootstrap.css"/>
+    <link rel="stylesheet" href="css/main.css"/>
+    <script type="text/javascript" src="components/angular/angular.js"></script>
+    <script type="text/javascript" src="components/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="components/bootstrap-css/js/bootstrap.js"></script>
+    <script type="text/javascript" src="components/underscore/underscore-min.js"></script>
+    <script type="text/javascript" src="components/momentjs/min/moment.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="js/order/manageOrderController.js"></script>
+    <script type="text/javascript" src="config.js"></script>
+</head>
+<body ng-controller="ManageOrderController as orderCtrl">
+<div class="container">
+    <div class="well" ng-repeat="order in orderCtrl.orders">
+        <h3>{{order.name}}</h3>
+        <button class="btn btn-success" ng-click="createOrderItem()" data-toggle="modal" href="#myModal">
+            <i class="icon-white"></i> Create New Order Item</button>
+        <table class='table table-striped'>
+            <thead>
+            <tr>
+                <th>Number</th>
+                <th>Name</th>
+                <th>Amount</th>
+                <th> </th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat='orderItem in order.orderItems'>
+                <td>{{orderItem.number}}</td>
+                <td>{{orderItem.name}}</td>
+                <td>{{orderItem.actualOrderAmount}}</td>
+                <td><button role='button' class='btn' ng-click="orderCtrl.deleteOrderItem(orderItem)">Delete</button></td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="modal hide fade" ng-include="'templates/create-orderItem.html'" id="myModal" role='dialog'></div>
+
+    </div>
+    </div>
+</div>
+</body>
+</html>

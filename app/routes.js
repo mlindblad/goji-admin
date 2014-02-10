@@ -1,5 +1,8 @@
 var Product = require('./models/product'),
-    ftpConnection = require('./ftpConnection');
+    Order = require('./models/order'),
+    mongoose = require('mongoose'),
+    ftpConnection = require('./ftpConnection'),
+    _ = require('underscore');
 
 
 module.exports = function(app) {
@@ -19,16 +22,11 @@ module.exports = function(app) {
 
 	// api ---------------------------------------------------------------------
 	// get all todos
-	app.get('/api/todos', function(req, res) {
-
-		// use mongoose to get all todos in the database
-		Todo.find(function(err, todos) {
-
-			// if there is an error retrieving, send the error. nothing after res.send(err) will execute
+	app.get('/api/orders', function(req, res) {
+		Order.find(function(err, orders) {
 			if (err)
 				res.send(err)
-
-			res.json(todos); // return all todos in JSON format
+			res.json(orders); // return all todos in JSON format
 		});
 	});
 
@@ -50,24 +48,12 @@ module.exports = function(app) {
     });
 
 	// create todo and send back all todos after creation
-	app.post('/api/todos', function(req, res) {
-
-		// create a todo, information comes from AJAX request from Angular
-		Todo.create({
-			text : req.body.text,
-			done : false
-		}, function(err, todo) {
-			if (err)
-				res.send(err);
-
-			// get and return all the todos after you create another
-			Todo.find(function(err, todos) {
-				if (err)
-					res.send(err)
-				res.json(todos);
-			});
-		});
-
+	app.post('/api/order', function(req, res) {
+        Order.create({name: req.body.name, orderItems: req.body.orderItems},
+            function(err, todo) {
+            if (err)
+                res.send(err);
+        });
 	});
 
 	// delete a todo
@@ -87,12 +73,16 @@ module.exports = function(app) {
 		});
 	});
 
-    app.get('/createproduct', function(req, res) {
-       res.sendfile('./frontend/app/createProduct.html');
+    app.get('/orders', function(req, res) {
+       res.sendfile('./frontend/app/listOrders.html');
     });
 
+//    app.get('/createproduct', function(req, res) {
+//       res.sendfile('./frontend/app/createProduct.html');
+//    });
+
 	// application -------------------------------------------------------------
-	app.get('*', function(req, res) {
-		res.sendfile('./frontend/app/index.html'); // load the single view file (angular will handle the page changes on the front-end)
-	});
+//	app.get('*', function(req, res) {
+//		res.sendfile('./frontend/app/index.html'); // load the single view file (angular will handle the page changes on the front-end)
+//	});
 };

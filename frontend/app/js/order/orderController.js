@@ -29,6 +29,25 @@ app.controller('OrderCtrl', function (pdfFactory, $http) {
             console.log('Error: ' + data);
         });
 
+    this.createOrderAndGeneratePdf = function(data, orderSeqNumber) {
+       //Create new order
+        var postData = {
+            id : orderSeqNumber,
+            name : "Följsesedel Order 00" + orderSeqNumber + " " + moment(new Date()).format('YYYY-MM-DD'),
+            orderItems: data
+        }
+        $http.post('/api/order', postData)
+            .success(function(response) {
+
+                console.log(response);
+            })
+            .error(function(data) {
+                console.log('Error: ' + data);
+            });
+
+
+    }
+
     this.generatePdf = function(data, orderSeqNumber) {
         var doc = new jsPDF();
         pdfFactory.createPdfDocument(doc, data, orderSeqNumber);
