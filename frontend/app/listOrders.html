@@ -16,10 +16,26 @@
 </head>
 <body ng-controller="ManageOrderController as orderCtrl">
 <div class="container">
+    <!-- Button trigger modal -->
+    <button class="btn btn-success create-order" data-toggle="modal" data-target="#createOrder">
+        Create order
+    </button>
+    <div class="modal fade" id="createOrder" ng-include="'templates/create-order.html'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    </div>
     <div class="well" ng-repeat="order in orderCtrl.orders">
-        <h3>{{order.name}}</h3>
-        <button class="btn btn-success" ng-click="createOrderItem()" data-toggle="modal" href="#myModal">
-            <i class="icon-white"></i> Create New Order Item</button>
+        <h3>{{order.name}}
+
+            <button class="btn btn-danger pull-right" data-toggle="modal" ng-click="orderCtrl.deleteOrder(order)">
+                Delete order
+            </button>
+        </h3>
+        <!-- Button trigger modal -->
+        <button class="btn btn-success" data-toggle="modal" data-target="#myModal">
+            Create order item
+        </button>
+
+        <div class="modal fade" id="myModal" ng-include="'templates/create-orderItem.html'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        </div>
         <table class='table table-striped'>
             <thead>
             <tr>
@@ -35,11 +51,11 @@
                 <td>{{orderItem.number}}</td>
                 <td>{{orderItem.name}}</td>
                 <td>{{orderItem.actualOrderAmount}}</td>
-                <td><button role='button' class='btn' ng-click="orderCtrl.deleteOrderItem(orderItem)">Delete</button></td>
+                <td><button role='button' class='btn btn-danger' ng-click="orderCtrl.deleteOrderItem(order, orderItem.number)">Delete</button></td>
             </tr>
             </tbody>
         </table>
-        <div class="modal hide fade" ng-include="'templates/create-orderItem.html'" id="myModal" role='dialog'></div>
+
 
     </div>
     </div>
