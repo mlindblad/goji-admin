@@ -1,4 +1,4 @@
-app.controller('ManageOrderController', function ($http, $scope) {
+app.controller('ManageOrderController', function ($http, $scope, $rootScope) {
     var self = this;
 
     this.deleteOrder = function(order) {
@@ -11,8 +11,9 @@ app.controller('ManageOrderController', function ($http, $scope) {
         }
     }
 
-    this.createOrder = function(name) {
-       self.orders.push({name : name, orderItems : {}});
+    this.createOrder = function(order) {
+       self.orders.push({name : order.name, orderItems : []});
+       $scope.order.name = '';
     }
 
     this.createOrderItem = function(order, orderItem) {

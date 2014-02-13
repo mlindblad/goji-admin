@@ -16,12 +16,14 @@
 </head>
 <body ng-controller="ManageOrderController as orderCtrl">
 <div class="container">
-    <!-- Button trigger modal -->
-    <button class="btn btn-success create-order" data-toggle="modal" data-target="#createOrder">
-        Create order
-    </button>
-    <div class="modal fade" id="createOrder" ng-include="'templates/create-order.html'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    </div>
+
+    <form class="form-inline create-order" role="form">
+        <div class="form-group">
+            <input type="text" class="form-control" id="createOrder" placeholder="Name" ng-model="order.name">
+        </div>
+        <button type="submit" class="btn btn-success" ng-click="orderCtrl.createOrder(order)">Create order</button>
+    </form>
+
     <div class="well" ng-repeat="order in orderCtrl.orders">
         <h3>{{order.name}}
 
@@ -29,13 +31,20 @@
                 Delete order
             </button>
         </h3>
-        <!-- Button trigger modal -->
-        <button class="btn btn-success" data-toggle="modal" data-target="#myModal">
-            Create order item
-        </button>
 
-        <div class="modal fade" id="myModal" ng-include="'templates/create-orderItem.html'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        </div>
+        <form class="form-inline" role="form">
+            <div class="form-group">
+                <input type="number" class="form-control" id="number" placeholder="Number" ng-model="orderItem.number">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="name" placeholder="Name" ng-model="orderItem.name">
+            </div>
+            <div class="form-group">
+                <input type="number" class="form-control" id="suggestedOrderAmount" placeholder="Amount" ng-model="orderItem.actualOrderAmount">
+            </div>
+            <button type="submit" class="btn btn-success" ng-click="orderCtrl.createOrderItem(order, orderItem)">Create order item</button>
+        </form>
+
         <table class='table table-striped'>
             <thead>
             <tr>
@@ -43,7 +52,6 @@
                 <th>Name</th>
                 <th>Amount</th>
                 <th> </th>
-
             </tr>
             </thead>
             <tbody>
@@ -51,12 +59,10 @@
                 <td>{{orderItem.number}}</td>
                 <td>{{orderItem.name}}</td>
                 <td>{{orderItem.actualOrderAmount}}</td>
-                <td><button role='button' class='btn btn-danger' ng-click="orderCtrl.deleteOrderItem(order, orderItem.number)">Delete</button></td>
+                <td><button role='button' class='btn btn-danger pull-right' ng-click="orderCtrl.deleteOrderItem(order, orderItem.number)">Delete</button></td>
             </tr>
             </tbody>
         </table>
-
-
     </div>
     </div>
 </div>
