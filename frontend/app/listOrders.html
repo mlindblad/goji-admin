@@ -17,11 +17,11 @@
 <body ng-controller="ManageOrderController as orderCtrl">
 <div class="container">
 
-    <form class="form-inline create-order" role="form">
+    <form novalidate class="css-form form-inline create-order" role="form">
         <div class="form-group">
-            <input type="text" class="form-control" id="createOrder" placeholder="Name" ng-model="order.name">
+            <input type="text" class="form-control" id="createOrder" placeholder="Name" ng-model="order.name" ng-form='name' required>
         </div>
-        <button type="submit" class="btn btn-success" ng-click="orderCtrl.createOrder(order)">Create order</button>
+        <button type="submit" class="btn btn-success" ng-disabled="!name.$valid" ng-click="orderCtrl.createOrder()">Create order</button>
     </form>
 
     <div class="well" ng-repeat="order in orderCtrl.orders">
@@ -34,15 +34,15 @@
 
         <form class="form-inline" role="form">
             <div class="form-group">
-                <input type="number" class="form-control" id="number" placeholder="Number" ng-model="orderItem.number">
+                <input type="number" class="form-control" id="number" placeholder="Number" ng-model="orderItem.number" ng-form='orderItem' required>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" id="name" placeholder="Name" ng-model="orderItem.name">
+                <input type="text" class="form-control" id="name" placeholder="Name" ng-model="orderItem.name" ng-form='orderItem' required>
             </div>
             <div class="form-group">
-                <input type="number" class="form-control" id="suggestedOrderAmount" placeholder="Amount" ng-model="orderItem.actualOrderAmount">
+                <input type="number" class="form-control" id="suggestedOrderAmount" placeholder="Amount" ng-model="orderItem.actualOrderAmount" ng-form='orderItem' required>
             </div>
-            <button type="submit" class="btn btn-success" ng-click="orderCtrl.createOrderItem(order, orderItem)">Create order item</button>
+            <button type="submit" class="btn btn-success" ng-click="orderCtrl.createOrderItem(order, orderItem)" ng-disabled="!orderItem.$valid">Create order item</button>
         </form>
 
         <table class='table table-striped'>

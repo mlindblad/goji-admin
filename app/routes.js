@@ -47,28 +47,57 @@ module.exports = function(app) {
 //
 //    });
 
+
+
 	// create order and send back all orders after creation
 	app.post('/api/order', function(req, res) {
         Order.create({name: req.body.name, orderItems: req.body.orderItems},
-            function(err, todo) {
+            function(err, order) {
             if (err)
                 res.send(err);
+
+            Order.find(function(err, orders) {
+                if (err)
+                    res.send(err)
+                res.json(orders);
+            });
         });
 	});
 
-	// delete a todo
-	app.delete('/api/todos/:todo_id', function(req, res) {
-		Todo.remove({
-			_id : req.params.todo_id
-		}, function(err, todo) {
+    app.put('/api/order/:name', function (req, res) {
+        Order.findOne({ 'name': req.params.name }, function (err, order) {
+            if (err) {
+                console.log(err);
+            }
+            order.orderItems = req.body.orderItems;
+
+            order.save(function (err, order, numberAffected) {
+                if (err) {
+                    console.log(err);
+                }
+
+                Order.find(function(err, orders) {
+                    if (err)
+                        res.send(err)
+                    res.json(orders);
+                });
+            })
+        })
+    });
+
+	// delete a order
+	app.delete('/api/order/:name', function(req, res) {
+		Order.remove({
+			name : req.params.name
+		}, function(err, order) {
 			if (err)
 				res.send(err);
 
-			// get and return all the todos after you create another
-			Todo.find(function(err, todos) {
+			// get and return all the orders after you create another
+			Order.find(function(err, orders) {
 				if (err)
 					res.send(err)
-				res.json(todos);
+				res.json(orders);
 			});
 		});
 	});

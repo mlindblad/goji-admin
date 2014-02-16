@@ -1,27 +1,43 @@
 app.controller('ManageOrderController', function ($http, $scope, $rootScope) {
     var self = this;
 
-    this.deleteOrder = function(order) {
-        for(var i = 0; i < self.orders.length; i++) {
-            var obj = self.orders[i];
+    $scope.order = {};
+    $scope.orderItem = {};
 
-            if(_.isEqual(obj, order)) {
-                self.orders.splice(i, 1);
-            }
-        }
+    this.deleteOrder = function(order) {
+        $http.delete('/api/order/' + order.name)
+            .success(function(data) {
+                self.orders = data;
+            })
+            .error(function(data) {
+                console.log('Error: ' + data);
+            });
     }
 
-    this.createOrder = function(order) {
-       self.orders.push({name : order.name, orderItems : []});
-       $scope.order.name = '';
+    this.createOrder = function() {
+        $http.post('/api/order', {name: $scope.order.name, orderItems: []})
+            .success(function(data) {
+                $scope.order = {};
+                self.orders = data;
+            })
+            .error(function(data) {
+                console.log('Error: ' + data);
+            });
     }
 
     this.createOrderItem = function(order, orderItem) {
-        order.orderItems.push({number: orderItem.number, name:orderItem.name, actualOrderAmount:orderItem.actualOrderAmount});
+        order.orderItems.push(orderItem);
+        $http.put('/api/order/' + order.name, {orderItems: order.orderItems})
+            .success(function(data) {
+                $scope.order = {};
+                self.orders = data;
+            })
+            .error(function(data) {
+                console.log('Error: ' + data);
+            });
     }
 
     this.deleteOrderItem = function(order, number) {
-        console.log($scope);
         for(var i = 0; i < order.orderItems.length; i++) {
             var obj = order.orderItems[i];
 
@@ -29,6 +45,16 @@ app.controller('ManageOrderController', function ($http, $scope, $rootScope) {
                 order.orderItems.splice(i, 1);
             }
         }
+        $http.put('/api/order/' + order.name, {orderItems: order.orderItems})
+            .success(function(data) {
+                $scope.order = {};
+                self.orders = data;
+            })
+            .error(function(data) {
+                console.log('Error: ' + data);
+            });
+
+
     }
 
     $http.get('/api/orders')
