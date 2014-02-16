@@ -31,22 +31,22 @@ var getStockStatus = function(callbackFunc) {
 
     async.series([
         //Load user to get userId first
-//        function(callback) {
-//            var ftp = new JSFtp({
-//                host: "ftp.e3pl.se",
-//                port: 21, // defaults to 21
-//                user: "149993_39_ex", // defaults to "anonymous"
-//                pass: "gojibar39" // defaults to "@anonymous"
-//            });
-//            var str = ""; // Will store the contents of the file
-//            ftp.get('lagersaldo.xml', 'lagersaldo.xml', function(hadErr) {
-//                if (hadErr)
-//                    console.error('There was an error retrieving the file.');
-//                else
-//                    console.log('File copied successfully!');
-//                callback()
-//            });
-//        },
+        function(callback) {
+            var ftp = new JSFtp({
+                host: "ftp.e3pl.se",
+                port: 21, // defaults to 21
+                user: "149993_39_ex", // defaults to "anonymous"
+                pass: "gojibar39" // defaults to "@anonymous"
+            });
+            var str = ""; // Will store the contents of the file
+            ftp.get('lagersaldo.xml', 'lagersaldo.xml', function(hadErr) {
+                if (hadErr)
+                    console.error('There was an error retrieving the file.');
+                else
+                    console.log('File copied successfully!');
+                callback()
+            });
+        },
         //Load posts (won't be called before task 1's "task callback" has been called)
         function(callback) {
             var parser = new xml2js.Parser();
