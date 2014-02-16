@@ -21,7 +21,7 @@ module.exports = function(app) {
     });
 
 	// api ---------------------------------------------------------------------
-	// get all todos
+	// get all orders
 	app.get('/api/orders', function(req, res) {
 		Order.find(function(err, orders) {
 			if (err)
@@ -30,24 +30,24 @@ module.exports = function(app) {
 		});
 	});
 
-    app.post('/products', function(req, res) {
-        console.log(req.body);
-        // create a todo, information comes from AJAX request from Angular
-        Product.create(req.body, function(err, todo) {
-            if (err)
-                res.send(err);
+//    app.post('/products', function(req, res) {
+//        console.log(req.body);
+//        // create a todo, information comes from AJAX request from Angular
+//        Product.create(req.body, function(err, todo) {
+//            if (err)
+//                res.send(err);
+//
+//            // get and return all the todos after you create another
+////            Todo.find(function(err, todos) {
+////                if (err)
+////                    res.send(err)
+////                res.json(todos);
+////            });
+//        });
+//
+//    });
 
-            // get and return all the todos after you create another
-//            Todo.find(function(err, todos) {
-//                if (err)
-//                    res.send(err)
-//                res.json(todos);
-//            });
-        });
-
-    });
-
-	// create todo and send back all todos after creation
+	// create order and send back all orders after creation
 	app.post('/api/order', function(req, res) {
         Order.create({name: req.body.name, orderItems: req.body.orderItems},
             function(err, todo) {
@@ -76,10 +76,6 @@ module.exports = function(app) {
     app.get('/orders', function(req, res) {
        res.sendfile('./frontend/app/listOrders.html');
     });
-
-//    app.get('/createproduct', function(req, res) {
-//       res.sendfile('./frontend/app/createProduct.html');
-//    });
 
 	// application -------------------------------------------------------------
 //	app.get('*', function(req, res) {

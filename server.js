@@ -17,7 +17,6 @@ app.configure(function() {
 
 // routes ======================================================================
 require('./app/routes.js')(app);
-//require('./app/ftpConnection.js')(app);
 
 // listen (start app with node server.js) ======================================
 app.listen(port);

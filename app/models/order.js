@@ -1,12 +1,12 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'),
 
-var Order = new mongoose.Schema({
-    name : String,
-    orderItems : [{
+    Order = new mongoose.Schema({
         name : String,
-        number : Number,
-        actualOrderAmount : Number
-    }]
-});
+        orderItems : [{
+            name : String,
+            number : String,
+            actualOrderAmount : Number
+        }]
+    });
 
 module.exports = mongoose.model('Order', Order);
