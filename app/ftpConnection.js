@@ -50,7 +50,7 @@ var getStockStatus = function(callbackFunc) {
         //Load posts (won't be called before task 1's "task callback" has been called)
         function(callback) {
             var parser = new xml2js.Parser();
-            fs.readFile('/Users/martin/Dev/src-code/goji-admin/lagersaldo.xml', function(err, data) {
+            fs.readFile(__dirname + '/../lagersaldo.xml', function(err, data) {
                 parser.parseString(data, function (err, result) {
                     stockData = result;
                     callback();
