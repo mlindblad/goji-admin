@@ -1,4 +1,4 @@
 module.exports = {
 
-    nrOfDaysToMeasure : 2
+    nrOfDaysToMeasure : 30
 }

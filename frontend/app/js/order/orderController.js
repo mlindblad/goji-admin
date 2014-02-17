@@ -10,6 +10,11 @@ function generateProducts(data) {
     return data;
 }
 
+function generatePdf(pdfFactory, data, orderSeqNumber) {
+    var doc = new jsPDF();
+    pdfFactory.createPdfDocument(doc, data, orderSeqNumber);
+    doc.save('Följsesedel Order 00' + orderSeqNumber + ' ' + moment(new Date()).format('YYYY-MM-DD') + '.pdf');
+}
 
 app.controller('OrderCtrl', function (pdfFactory, $http) {
     var self = this;
@@ -32,7 +37,6 @@ app.controller('OrderCtrl', function (pdfFactory, $http) {
     this.createOrderAndGeneratePdf = function(data, orderSeqNumber) {
        //Create new order
         var postData = {
-            id : orderSeqNumber,
             name : "Följsesedel Order 00" + orderSeqNumber + " " + moment(new Date()).format('YYYY-MM-DD'),
             orderItems: data
         }
@@ -44,14 +48,7 @@ app.controller('OrderCtrl', function (pdfFactory, $http) {
             .error(function(data) {
                 console.log('Error: ' + data);
             });
-
-
-    }
-
-    this.generatePdf = function(data, orderSeqNumber) {
-        var doc = new jsPDF();
-        pdfFactory.createPdfDocument(doc, data, orderSeqNumber);
-        doc.save('Följsesedel Order 00' + orderSeqNumber + ' ' + moment(new Date()).format('YYYY-MM-DD') + '.pdf');
+        generatePdf(pdfFactory, data, orderSeqNumber);
     }
 });
 
