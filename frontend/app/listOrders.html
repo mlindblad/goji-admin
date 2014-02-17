@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en" ng-app="goji-admin">
+<head>
+    <meta charset="utf-8">
+    <title>Goji admin</title>
+    <link rel="stylesheet" href="components/bootstrap-css/css/bootstrap.css"/>
+    <link rel="stylesheet" href="css/main.css"/>
+    <script type="text/javascript" src="components/angular/angular.js"></script>
+    <script type="text/javascript" src="components/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="components/bootstrap-css/js/bootstrap.js"></script>
+    <script type="text/javascript" src="components/underscore/underscore-min.js"></script>
+    <script type="text/javascript" src="components/momentjs/min/moment.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="js/order/manageOrderController.js"></script>
+    <script type="text/javascript" src="config.js"></script>
+</head>
+<body ng-controller="ManageOrderController as orderCtrl">
+<div class="container">
+
+    <form novalidate class="css-form form-inline create-order" role="form">
+        <div class="form-group">
+            <input type="text" class="form-control" id="createOrder" placeholder="Name" ng-model="order.name" ng-form='name' required>
+        </div>
+        <button type="submit" class="btn btn-success" ng-disabled="!name.$valid" ng-click="orderCtrl.createOrder()">Create order</button>
+    </form>
+
+    <div class="well" ng-repeat="order in orderCtrl.orders">
+        <h3>{{order.name}}
+
+            <button class="btn btn-danger pull-right" data-toggle="modal" ng-click="orderCtrl.deleteOrder(order)">
+                Delete order
+            </button>
+        </h3>
+
+        <form class="form-inline" role="form">
+            <div class="form-group">
+                <input type="number" class="form-control" id="number" placeholder="Number" ng-model="orderItem.number" ng-form='orderItem' required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="name" placeholder="Name" ng-model="orderItem.name" ng-form='orderItem' required>
+            </div>
+            <div class="form-group">
+                <input type="number" class="form-control" id="suggestedOrderAmount" placeholder="Amount" ng-model="orderItem.actualOrderAmount" ng-form='orderItem' required>
+            </div>
+            <button type="submit" class="btn btn-success" ng-click="orderCtrl.createOrderItem(order, orderItem)" ng-disabled="!orderItem.$valid">Create order item</button>
+        </form>
+
+        <table class='table table-striped'>
+            <thead>
+            <tr>
+                <th>Number</th>
+                <th>Name</th>
+                <th>Amount</th>
+                <th> </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat='orderItem in order.orderItems'>
+                <td>{{orderItem.number}}</td>
+                <td>{{orderItem.name}}</td>
+                <td>{{orderItem.actualOrderAmount}}</td>
+                <td><button role='button' class='btn btn-danger pull-right' ng-click="orderCtrl.deleteOrderItem(order, orderItem.number)">Delete</button></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    </div>
+</div>
+</body>
+</html>

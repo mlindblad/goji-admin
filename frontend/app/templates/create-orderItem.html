@@ -1,0 +1,37 @@
+<!-- Modal -->
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Create New Order Item</h4>
+            </div>
+            <div class="container">
+            <form>
+                <!-- NUMBER -->
+                <div id="name-group" class="form-group">
+                    <label>Number</label>
+                    <input type="number" name="number" class="form-control" ng-model="orderItem.number">
+                    <span class="help-block"></span>
+                </div>
+
+                <!-- NAME -->
+                <div id="name-group" class="form-group">
+                    <label>Name</label>
+                    <input type="text" name="name" class="form-control" ng-model="orderItem.name">
+                    <span class="help-block"></span>
+                </div>
+
+                <!-- Amount -->
+                <div id="name-group" class="form-group">
+                    <label>Amount</label>
+                    <input type="number" name="amount" class="form-control" ng-model="orderItem.actualOrderAmount">
+                    <span class="help-block"></span>
+                </div>
+
+                <!-- SUBMIT BUTTON -->
+                <button type='submit' class="btn btn-success btn-lg btn-block" data-dismiss="modal" ng-click="orderCtrl.createOrderItem(order, orderItem)">Create</button>
+            </form>
+            </div>
+        </div>
+    </div>
