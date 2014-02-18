@@ -1,22 +1,15 @@
 var Product = require('./models/product'),
-    Order = require('./models/order'),
-    mongoose = require('mongoose'),
-    ftpConnection = require('./ftpConnection'),
-    _ = require('underscore');
-
+    Order = require('./models/order');
 
 module.exports = function(app) {
 
 	app.get('/products', function(req, res) {
-        //Download stock status from e3pl, and update products
-        ftpConnection.getStockStatus(function() {
-            Product.find(function(err, products) {
-                // if there is an error retrieving, send the error. nothing after res.send(err) will execute
-                if (err)
-                    res.send(err)
+        Product.find(function(err, products) {
+            // if there is an error retrieving, send the error. nothing after res.send(err) will execute
+            if (err)
+                res.send(err)
 
-                res.json(products); // return all todos in JSON format
-            });
+            res.json(products); // return all todos in JSON format
         });
     });
 
@@ -29,25 +22,6 @@ module.exports = function(app) {
 			res.json(orders); // return all todos in JSON format
 		});
 	});
-
-//    app.post('/products', function(req, res) {
-//        console.log(req.body);
-//        // create a todo, information comes from AJAX request from Angular
-//        Product.create(req.body, function(err, todo) {
-//            if (err)
-//                res.send(err);
-//
-//            // get and return all the todos after you create another
-////            Todo.find(function(err, todos) {
-////                if (err)
-////                    res.send(err)
-////                res.json(todos);
-////            });
-//        });
-//
-//    });
-
-
 
 	// create order and send back all orders after creation
 	app.post('/api/order', function(req, res) {
