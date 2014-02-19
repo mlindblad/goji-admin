@@ -1,13 +1,32 @@
 
 
-function generateProducts(data) {
+function generateProducts(data, orders) {
     _.each(data, function (product) {
         product.totalWeight = function () {
             return (product.bagSize * product.actualOrderAmount) / 1000;
         }
         product.actualOrderAmount = 0;
+        product.getOrderedAmount = function() {
+            return getOrderedAmountForProduct(orders, product);
+        }
     });
     return data;
+}
+
+function getOrderedAmountForProduct(orders, product) {
+    var orderedAmount = 0;
+    _.find(orders, function(order) {
+        var foundOrderItem =  _.find(order.orderItems, function(orderItem) {
+            if (typeof product !== 'undefined') {
+                if (product.number === orderItem.number) {
+                    orderedAmount = orderItem.actualOrderAmount;
+                    return true;
+                }
+            }
+        });
+        return (typeof foundOrderItem !== 'undefined');
+    });
+    return orderedAmount
 }
 
 function generatePdf(pdfFactory, data, orderSeqNumber) {
@@ -26,12 +45,12 @@ app.controller('OrderCtrl', function (pdfFactory, $http) {
         return totalWeight;
     }
 
-    $http.get('/products')
-        .success(function(mockData) {
-            self.data = generateProducts(mockData);
-        })
-        .error(function(data) {
-            console.log('Error: ' + data);
+    $http.get('/api/orders')
+        .then(function(result) {
+            self.orders = result.data;
+            return $http.get('/products');
+        }).then(function(mockData){
+            self.data = generateProducts(mockData.data, self.orders);
         });
 
     this.createOrderAndGeneratePdf = function(data, orderSeqNumber) {

@@ -25,9 +25,10 @@
             <tr>
                 <th>Name</th>
                 <th>Bag size</th>
-                <th>Total weight (kg)</th>
                 <th>In Stock</th>
+                <th>Ordered Amount</th>
                 <th>Suggested (bags)</th>
+                <th>Total weight (kg)</th>
                 <th>Actual</th>
             </tr>
             </thead>
@@ -35,9 +36,10 @@
             <tr ng-repeat="product in order.data">
                 <td>{{product.name}}</td>
                 <td>{{product.bagSize}}</td>
-                <td>{{product.totalWeight()}}</td>
                 <td>{{product.amountInStock}}</td>
+                <td>{{product.getOrderedAmount()}}</td>
                 <td>{{product.suggestedOrderAmount}}</td>
+                <td>{{product.totalWeight()}}</td>
                 <td><input type="text" class="form-control" ng-model="product.actualOrderAmount" value="{{product.actualOrderAmount}}"></td>
             </tr>
             <tfoot>
