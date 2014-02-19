@@ -25,6 +25,7 @@
             <tr>
                 <th>Name</th>
                 <th>Bag size</th>
+                <th>Ave. Per Day</th>
                 <th>In Stock</th>
                 <th>Ordered Amount</th>
                 <th>Suggested (bags)</th>
@@ -33,10 +34,11 @@
             </tr>
             </thead>
 
-            <tr ng-repeat="product in order.data">
+            <tr ng-repeat="product in order.data | orderBy:order.mostImportant">
                 <td>{{product.name}}</td>
                 <td>{{product.bagSize}}</td>
-                <td>{{product.amountInStock}}</td>
+                <td>{{product.averageAmountSoldPerDay()}}</td>
+                <td ng-class="{red : product.codeRed(), yellow : product.codeYellow()}">{{product.amountInStock}}</td>
                 <td>{{product.getOrderedAmount()}}</td>
                 <td>{{product.suggestedOrderAmount}}</td>
                 <td>{{product.totalWeight()}}</td>
