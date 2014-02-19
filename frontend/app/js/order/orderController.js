@@ -63,7 +63,6 @@ app.controller('OrderCtrl', function (pdfFactory, $http) {
     }
 
     this.mostImportant = function(product) {
-        console.log("kommer hit");
         return (product.amountInStock + product.getOrderedAmount())/product.averageAmountSoldPerDay();
     }
 
