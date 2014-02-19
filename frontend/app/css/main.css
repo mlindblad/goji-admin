@@ -6,3 +6,11 @@
 .create-order {
     margin-bottom: 20px;
 }
+
+.table > tbody > tr > td.red {
+    background-color: red;
+}
+
+.table > tbody > tr > td.yellow {
+    background-color: #ffff00;
+}

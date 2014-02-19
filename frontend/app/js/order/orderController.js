@@ -9,6 +9,22 @@ function generateProducts(data, orders) {
         product.getOrderedAmount = function() {
             return getOrderedAmountForProduct(orders, product);
         }
+        product.averageAmountSoldPerDay = function() {
+            var total = 0;
+            _.each(product.amountSoldPerDay, function(amountObject) {
+                total += amountObject.amount;
+            });
+            return total/product.amountSoldPerDay.length;
+        }
+        product.codeRed = function() {
+            return (this.amountInStock + this.getOrderedAmount() < (this.averageAmountSoldPerDay() * 14))
+
+        }
+        product.codeYellow = function() {
+            return (this.amountInStock + this.getOrderedAmount() >= (this.averageAmountSoldPerDay() * 14)
+                && this.amountInStock + this.getOrderedAmount() <= (this.averageAmountSoldPerDay() * 21))
+        }
+
     });
     return data;
 }
@@ -37,12 +53,18 @@ function generatePdf(pdfFactory, data, orderSeqNumber) {
 
 app.controller('OrderCtrl', function (pdfFactory, $http) {
     var self = this;
+
     this.totalWeight = function (data) {
         var totalWeight = 0;
         _.each(data, function (product) {
             totalWeight += product.totalWeight();
         });
         return totalWeight;
+    }
+
+    this.mostImportant = function(product) {
+        console.log("kommer hit");
+        return (product.amountInStock + product.getOrderedAmount())/product.averageAmountSoldPerDay();
     }
 
     $http.get('/api/orders')
