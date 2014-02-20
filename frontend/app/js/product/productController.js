@@ -1,22 +1,23 @@
-app.controller('ProductCtrl', function ($scope, $http) {
-    $scope.processForm = function() {
-        console.log($scope.formData);
-        $http({
-            method  : 'POST',
-            url     : '/products',
-            data    : $scope.formData
-        })
-            .success(function(data) {
-                console.log(data);
+function createAutoClosingAlert(selector, delay) {
+    var alert = $(selector).alert();
+    window.setTimeout(function() { alert.alert('close') }, delay);
+}
 
-                if (!data.success) {
-                    // if not successful, bind errors to error variables
-                    $scope.errorName = data.errors.name;
-                    $scope.errorSuperhero = data.errors.superheroAlias;
-                } else {
-                    // if successful, bind success message to message
-                    $scope.message = data.message;
-                }
+app.controller('ProductCtrl', function ($scope, $http) {
+
+    $scope.showAlertMessage = false;
+
+    this.createProduct = function() {
+
+        $http.post('/api/product', $scope.formData)
+            .success(function(data) {
+                $scope.formData = {};
+                $scope.showAlertMessage = true;
+                createAutoClosingAlert(".alert-message", 2000);
+
+            })
+            .error(function(data) {
+                console.log('Error: ' + data);
             });
     };
 

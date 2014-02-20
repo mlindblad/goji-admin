@@ -19,56 +19,56 @@
     <script type="text/javascript" src="js/product/productController.js"></script>
     <script type="text/javascript" src="config.js"></script>
 </head>
-<body class="container">
+<body class="container" ng-controller="ProductCtrl as ctrl">
 
-<form ng-submit="processForm()" ng-controller="ProductCtrl">
-    <!-- NAME -->
-    <div id="name-group" class="form-group">
-        <label>Name</label>
-        <input type="text" name="name" class="form-control" ng-model="formData.name">
-        <span class="help-block"></span>
-    </div>
+<div class="well">
+    <form class="css-form" role="form" name="form" novalidate>
+        <!-- NAME -->
+        <div id="name-group" class="form-group">
+            <label>Name</label>
+            <input type="text" name="name" class="form-control" ng-model="formData.name" required>
+            <span class="help-block"></span>
+        </div>
 
-    <!-- NUMBER -->
-    <div id="name-group" class="form-group">
-        <label>Number</label>
-        <input type="number" name="number" class="form-control" ng-model="formData.number">
-        <span class="help-block"></span>
-    </div>
+        <!-- NUMBER -->
+        <div id="name-group" class="form-group">
+            <label>Number</label>
+            <input type="number" name="number" class="form-control" ng-model="formData.number" required>
+            <span class="help-block"></span>
+        </div>
 
-    <!-- sweName -->
-    <div id="name-group" class="form-group">
-        <label>Swename</label>
-        <input type="text" name="sweName" class="form-control" ng-model="formData.sweName">
-        <span class="help-block"></span>
-    </div>
+        <!-- sweName -->
+        <div id="name-group" class="form-group">
+            <label>Swename</label>
+            <input type="text" name="sweName" class="form-control" ng-model="formData.sweName" required>
+            <span class="help-block"></span>
+        </div>
 
-    <!-- suggestedOrderAmount -->
-    <div id="name-group" class="form-group">
-        <label>Suggested Order Amount</label>
-        <input type="text" name="suggestedOrderAmount" class="form-control" ng-model="formData.suggestedOrderAmount">
-        <span class="help-block"></span>
-    </div>
+        <!-- suggestedOrderAmount -->
+        <div id="name-group" class="form-group">
+            <label>Suggested Order Amount</label>
+            <input type="number" name="suggestedOrderAmount" class="form-control" ng-model="formData.suggestedOrderAmount" required>
+            <span class="help-block"></span>
+        </div>
 
-    <!-- bag size -->
-    <div id="name-group" class="form-group">
-        <label>Bag size</label>
-        <input type="number" name="bagSize" class="form-control" ng-model="formData.bagSize">
-        <span class="help-block"></span>
-    </div>
+        <!-- bag size -->
+        <div id="name-group" class="form-group">
+            <label>Bag size</label>
+            <input type="number" name="bagSize" class="form-control" ng-model="formData.bagSize" required>
+            <span class="help-block"></span>
+        </div>
 
-    <!-- actualOrderAmount -->
-    <div id="name-group" class="form-group">
-        <label>Actual Order Amount</label>
-        <input type="number" name="actualOrderAmount" class="form-control" ng-model="formData.actualOrderAmount">
-        <span class="help-block"></span>
-    </div>
-
-    <!-- SUBMIT BUTTON -->
-    <input type="submit" class="btn btn-success btn-lg btn-block" value="Submit" />
+        <!-- SUBMIT BUTTON -->
+        <button type="submit" class="btn btn-success" ng-click="ctrl.createProduct()" ng-disabled="form.$invalid">Create Product</button>
 
 
-</form>
+    </form>
+</div>
+
+<div class="alert alert-success alert-dismissable alert-message" ng-show="showAlertMessage" >
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    New Product Created
+</div>
 
 </body>
 </html>

@@ -13,6 +13,17 @@ module.exports = function(app) {
         });
     });
 
+    app.post('/api/product', function(req, res) {
+        Product.create(req.body,
+            function(err, order) {
+                if (err)
+                    res.send(err);
+
+                res.writeHead(200, { "Content-Type": "application/json" });
+                res.end();
+            });
+    });
+
 	// api ---------------------------------------------------------------------
 	// get all orders
 	app.get('/api/orders', function(req, res) {
