@@ -8,7 +8,7 @@ var cronJob = require('cron').CronJob,
 
     createAndStartCronJob = function() {
     var job = new cronJob({
-        cronTime: '00 00 18  * * 1-5',
+        cronTime: '00 00 19  * * 1-5',
         //cronTime: '* * * * * *',
         onTick: function() {
             var jsonResult = {},
