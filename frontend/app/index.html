@@ -40,7 +40,7 @@
                 <td>{{product.averageAmountSoldPerDay()}}</td>
                 <td ng-class="{red : product.codeRed(), yellow : product.codeYellow()}">{{product.amountInStock}}</td>
                 <td>{{product.getOrderedAmount()}}</td>
-                <td>{{product.suggestedOrderAmount}}</td>
+                <td>{{product.suggestedOrderAmount()}}</td>
                 <td>{{product.totalWeight()}}</td>
                 <td><input type="text" class="form-control" ng-model="product.actualOrderAmount" value="{{product.actualOrderAmount}}"></td>
             </tr>

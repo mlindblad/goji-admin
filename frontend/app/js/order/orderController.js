@@ -33,6 +33,11 @@ function generateProducts(data, orders) {
             });
             return Math.round((total/product.amountSoldPerDay.length) * 10) / 10;
         }
+        product.suggestedOrderAmount = function() {
+            var stockLengthInDays = 60;
+            return product.averageAmountSoldPerDay() * stockLengthInDays;
+        }
+
         product.codeRed = function() {
             return (this.amountInStock + this.getOrderedAmount() < (this.averageAmountSoldPerDay() * 14))
 
