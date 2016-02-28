@@ -54,6 +54,9 @@
                 </tr>
             </tfoot>
         </table>
+        <textarea rows="4" cols="50" ng-model="shipTo">
+
+        </textarea>
         <div id="emailText">
             <p>Hi,<br><br>
 
@@ -69,15 +72,22 @@
             <ul>
                 <li ng-repeat="product in (orderedProducts = (order.data | showOrderedProductsFilter))">{{product.totalWeight()}}kg ({{product.actualOrderAmount}}x{{product.bagSize}}g) {{product.name}}</li>
             </ul>
-            <p>
+            <div>
                 ---<br>
                 Total ~ {{order.totalWeight(order.data)}}kg<br><br>
 
                 Shipped to:<br>
-                E-3PL Logistics<br>
-                (Gojibär)<br>
-                Strandbadsvägen 13A<br>
-                252 29 Helsingborg<br><br>
+                <div style="white-space:pre-line;" ng-if="shipTo">
+                    <p>{{shipTo}}</p>
+                </div>
+
+                <p ng-if="!shipTo">
+                    <br>
+                    E-3PL Logistics AB<br>
+                    Landskronavägen 20<br>
+                    252 32 Helsingborg<br><br>
+                </p>
+
 
                 With labels without the www.gojiking.co.uk webaddress. We can continue to pay by bank transfer.<br>
 
@@ -87,7 +97,7 @@
 
                 Martin<br>
 
-            </p>
+            </div>
         </div>
 </div>
 </body>
